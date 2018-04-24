@@ -50,7 +50,7 @@
   "author": "",
   "license": "ISC",
   "jest": {
-    "setupTestFrameworkScriptFile": "./test/setup.js"
+    
   },
   "prettier": {
     "bracketSpacing": false,
