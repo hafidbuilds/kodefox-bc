@@ -5,7 +5,11 @@ pluck a specific property from each
 
 // @flow
 
-function pluck(array: Array<mixed>, propName: string): Array<mixed> {
+type ArrOfObjects = [
+  {[key: string]: mixed}
+]
+
+function pluck(array: ArrOfObjects, propName: string): Array<mixed> {
   let newArr = [];
   for (let item of array) {
     if (item.hasOwnProperty(propName)) {
