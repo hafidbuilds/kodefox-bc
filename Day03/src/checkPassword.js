@@ -7,7 +7,7 @@ const createContainsCharacter = (password: string) => {
   const passwordLetters = password.split('')
 
   return {
-    isContainsUpperCase: (password) => {
+    isContainsUpperCase: (password): boolean => {
       passwordLetters.forEach(passwordCharacter => {
         let upperCaseLetters = passwordCharacter.toUpperCase()
         if (passwordCharacter === upperCaseLetters) {
@@ -17,7 +17,7 @@ const createContainsCharacter = (password: string) => {
       return isUpperCaseExist
     },
 
-    isContainsLowerCase: (password) => {
+    isContainsLowerCase: (password): boolean => {
       passwordLetters.forEach(passwordCharacter => {
         let lowerCaseLetters = passwordCharacter.toLowerCase()
         if (passwordCharacter === lowerCaseLetters) {
@@ -29,7 +29,7 @@ const createContainsCharacter = (password: string) => {
   }
 }
 
-const checkPassword = (password: string) => {
+const checkPassword = (password: string): {} => {
   const check = createContainsCharacter(password)
   if (password.length < 6) {
     return {

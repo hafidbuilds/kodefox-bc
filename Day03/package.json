@@ -49,9 +49,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "jest": {
-    
-  },
+  "jest": {},
   "prettier": {
     "bracketSpacing": false,
     "singleQuote": true,
