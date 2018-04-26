@@ -3,7 +3,11 @@ given an array of numbers,
 return a new array in which each number is doubled
 */
 
-function map(array, instruction) {
+// @flow
+
+type DoubleFunc = (item: number) => number
+
+function map(array: Array<number>, instruction: DoubleFunc ): Array<number> {
   let newArr = [];
   for (let item of array) {
     newArr.push(instruction(item));
@@ -11,6 +15,6 @@ function map(array, instruction) {
   return newArr;
 }
 
-const double = (item) => item * 2;
+const double = (item: number): number => item * 2;
 
 export {map, double};

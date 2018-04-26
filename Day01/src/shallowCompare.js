@@ -2,7 +2,9 @@
 compare two values, shallow comparing content in arrays
 */
 
-function shallowCompare(array1, array2) {
+// @flow
+
+function shallowCompare(array1: Array<mixed>, array2: Array<mixed>): boolean {
   let result = true;
   if (array1.length !== array2.length) {
     result = false;
