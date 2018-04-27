@@ -49,9 +49,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "jest": {
-    "setupTestFrameworkScriptFile": "./test/setup.js"
-  },
+  "jest": {},
   "prettier": {
     "bracketSpacing": false,
     "singleQuote": true,
