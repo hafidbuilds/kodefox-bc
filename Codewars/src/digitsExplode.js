@@ -11,7 +11,7 @@ digitsExplode('312') => '333122'
 function digitsExplode(stringOfInteger: string): string {
   let str = "";
   let arr = stringOfInteger.split('');
-  for(let char of arr){
+  for (let char of arr) {
     str += char.repeat(Number(char));
   }
   return str;

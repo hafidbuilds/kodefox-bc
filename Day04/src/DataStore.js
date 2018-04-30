@@ -7,9 +7,9 @@ type FuncDoSomething = (itemKey: string, price: number) => mixed
 class DataStore {
   data: Data = {}
   
-  // constructor(initialState: Data) {
-  //   this.data = initialState
-  // }
+  constructor(initialState: Data) {
+    this.data = initialState
+  }
 
   set(itemKey: string, price: number) {
     this.data[itemKey] = price
