@@ -16,7 +16,7 @@ var loaders = [
 
 module.exports = {
   entry: {
-    main: './src/main.js',
+    main: './src/index.js',
   },
   output: {
     path: path.join(__dirname, 'assets'),
