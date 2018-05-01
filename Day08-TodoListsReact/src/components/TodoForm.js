@@ -11,7 +11,6 @@ export const TodoForm = (props: Props) => {
         onChange={props.handleInputChange}
         value={props.currentTodo}/>
       <button type='submit'>Submit</button>
-      <button type='button' onClick={props.handleClearInput}>Clear</button>
     </form>
   );
 }

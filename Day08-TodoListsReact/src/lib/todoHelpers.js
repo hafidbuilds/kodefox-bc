@@ -19,7 +19,7 @@ export const updateTodo = (todoItems: TodoItems, todos: Array<TodoItems>) => {
   const updatedIndex = todos.findIndex(todo => todo.id === todoItems.id)
   return [
     ...todos.slice(0, updatedIndex),
-    todoItems,
-    ...todos.slice(updatedIndex + 1)
+    ...todos.slice(updatedIndex + 1),
+    todoItems
   ]
 }

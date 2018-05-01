@@ -68,14 +68,14 @@ class App extends Component<Props, State> {
           <span style={{'color': 'red'}} >{errorMessage}</span>
           : null
         }
-        <TodoForm 
-          handleInputChange={this._handleInputChange}
-          handleSubmit={submitHandler}
-          handleClearInput={this._handleClearInput}
-          currentTodo={currentTodo}/>
         <TodoLists 
           handleToggle={this._handleToggle}
           todos={todos}/>
+        <TodoForm 
+          handleInputChange={this._handleInputChange}
+          handleSubmit={submitHandler}
+          currentTodo={currentTodo}/>
+        <button type='button' onClick={this._handleClearInput}>Clear</button>
       </div>
     );
   }

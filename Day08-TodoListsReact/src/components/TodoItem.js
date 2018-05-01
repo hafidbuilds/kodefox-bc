@@ -10,7 +10,11 @@ export const TodoItem = (props: Props) => {
         type="checkbox" 
         checked={isComplete}
         onChange={() => handleToggle(id)}/>
-      {content}
+      {
+        isComplete ?
+        <s>{content}</s>
+        : content
+      }
     </li>
   );
 }
