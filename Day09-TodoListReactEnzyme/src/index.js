@@ -1,11 +1,11 @@
 // @flow
 
-import React from "react";
-import {render} from 'react-dom'
+import React from 'react';
+import {render} from 'react-dom';
 
-import App from './App'
+import App from './App';
 
-let body = document.getElementById('root')
+let body = document.getElementById('root');
 if (body) {
-  render(<App/>, body)
+  render(<App/>, body);
 }

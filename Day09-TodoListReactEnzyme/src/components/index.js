@@ -1,2 +1,4 @@
-export {TodoForm} from './TodoForm'
-export {TodoLists} from './TodoLists'
+// @flow
+
+export {TodoForm} from './TodoForm';
+export {TodoLists} from './TodoLists';
