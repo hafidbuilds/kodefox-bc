@@ -16,6 +16,7 @@ class App extends Component<Props, State> {
     ],
     currentTodo: '',
     errorMessage: '',
+    filter: ''
   }
 
   _handleSubmit = (event: SyntheticMouseEvent<HTMLButtonElement>) => {
@@ -62,12 +63,28 @@ class App extends Component<Props, State> {
     });
   }
 
+  _handleFilterType = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
+    this.setState({
+      filter: event.currentTarget.value,
+    });
+  }
+
   render() {
     let {todos, errorMessage, currentTodo} = this.state;
     const submitHandler = this.state.currentTodo ? this._handleSubmit : this._handleEmptySubmit;
 
+    if (this.state.filter) {
+      todos = todos.filter(todoItem => 
+        todoItem.content.toLowerCase()
+          .includes(this.state.filter.toLowerCase()))
+    };
+
     return (
       <div>
+        <input 
+          type="text" 
+          placeholder='Search...'
+          onChange={this._handleFilterType} />
         <TodoLists
           handleToggle={this._handleToggle}
           todos={todos}/>

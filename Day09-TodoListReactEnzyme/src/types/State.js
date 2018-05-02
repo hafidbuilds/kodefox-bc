@@ -13,4 +13,5 @@ export type State = {
   todos: Array<TodoItems>,
   currentTodo: string,
   errorMessage: string,
+  filter: string,
 };
