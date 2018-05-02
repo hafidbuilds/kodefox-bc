@@ -74,7 +74,7 @@ class App extends Component<Props, State> {
 
   render() {
     let {todos, errorMessage, currentTodo, filter} = this.state;
-    const submitHandler = this.state.currentTodo ? this._handleSubmit : this._handleEmptySubmit;
+    const submitHandler = this.state.currentTodo.trim() ? this._handleSubmit : this._handleEmptySubmit;
 
     if (filter) {
       todos = todos.filter((todoItem) =>
