@@ -12,7 +12,14 @@ export const TodoLists = (props: Props) => {
   let {todos} = props;
   return (
     <ul>
-      {todos.map((todo) => <TodoItem key={todo.id} {...todo} handleToggle={props.handleToggle}/>)}
+      {
+        todos.length === 0 ?
+          <h1>NOT FOUND</h1>
+          : todos.map((todo) =>
+            <TodoItem
+              key={todo.id} {...todo}
+              handleToggle={props.handleToggle}/>)
+      }
     </ul>
   );
 };

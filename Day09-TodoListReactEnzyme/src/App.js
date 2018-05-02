@@ -10,13 +10,16 @@ type Props = {};
 class App extends Component<Props, State> {
   state = {
     todos: [
-      {id: 1, content: 'Go To School', isComplete: false},
-      {id: 2, content: 'Doing Homework', isComplete: false},
-      {id: 3, content: 'Playing Game', isComplete: false},
+      {id: 1, content: 'Email to John', isComplete: false},
+      {id: 2, content: 'Meeting with Simon', isComplete: false},
+      {id: 3, content: 'Fix github Issues', isComplete: false},
+      {id: 4, content: 'Review Pull Request', isComplete: false},
+      {id: 5, content: 'Pair Programming session', isComplete: false},
+      {id: 6, content: 'Code Review', isComplete: false},
     ],
     currentTodo: '',
     errorMessage: '',
-    filter: ''
+    filter: '',
   }
 
   _handleSubmit = (event: SyntheticMouseEvent<HTMLButtonElement>) => {
@@ -70,20 +73,20 @@ class App extends Component<Props, State> {
   }
 
   render() {
-    let {todos, errorMessage, currentTodo} = this.state;
+    let {todos, errorMessage, currentTodo, filter} = this.state;
     const submitHandler = this.state.currentTodo ? this._handleSubmit : this._handleEmptySubmit;
 
-    if (this.state.filter) {
-      todos = todos.filter(todoItem => 
+    if (filter) {
+      todos = todos.filter((todoItem) =>
         todoItem.content.toLowerCase()
-          .includes(this.state.filter.toLowerCase()))
-    };
+          .includes(filter.toLowerCase()));
+    }
 
     return (
       <div>
-        <input 
-          type="text" 
-          placeholder='Search...'
+        <input
+          type="text"
+          placeholder="Search..."
           onChange={this._handleFilterType} />
         <TodoLists
           handleToggle={this._handleToggle}
