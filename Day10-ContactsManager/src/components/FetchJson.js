@@ -1,19 +1,31 @@
+// @flow
+
 import React, {Component, Fragment} from 'react';
 import axios from 'axios';
 
-class FetchJson extends Component {
+type FetchJsonState = {
+  [string]: mixed
+}
+
+type Props = {
+  [string]: mixed | () => void
+}
+
+class FetchJson extends Component<FetchJsonState, Props> {
   state = { 
     url: null,
     data: null,
-    isLoading: false
+    isLoading: false,
+    selectedIndex: 0
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
+  static getDerivedStateFromProps(nextProps: Props, prevState: FetchJsonState) {
     if (prevState.url !== nextProps.url) {
       return {
         url: nextProps.url,
         data: null,
-        isLoading: true
+        isLoading: true,
+        selectedIndex: 0,
       }
     }
     return null
