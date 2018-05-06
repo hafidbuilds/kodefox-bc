@@ -14,4 +14,5 @@ export type State = {
   currentTodo: string,
   errorMessage: string,
   filter: string,
+  selectedIndex: number
 };

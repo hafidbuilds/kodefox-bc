@@ -20,6 +20,7 @@ class App extends Component<Props, State> {
     currentTodo: '',
     errorMessage: '',
     filter: '',
+    selectedIndex: 0
   }
 
   _handleSubmit = (event: SyntheticMouseEvent<HTMLButtonElement>) => {
@@ -72,8 +73,36 @@ class App extends Component<Props, State> {
     });
   }
 
+  componentDidMount() {
+    document.addEventListener('keyup', this._onKeyUp);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keyup', this._onKeyUp);
+  }
+
+  _onKeyUp = (event: KeyboardEvent) => {
+    let {selectedIndex, todos} = this.state;
+    let index = selectedIndex;
+    let maxIndex = todos.length - 1;
+    let newIndex = index;
+    if (event.key === 'ArrowUp') {
+      newIndex = Math.max(0, index - 1);
+    }
+    if (event.key === 'ArrowDown') {
+      newIndex = Math.min(maxIndex, index + 1);
+    }
+    if (newIndex !== index) {
+      this.setState({selectedIndex: newIndex});
+    }
+    if (event.key === ' ' && document.activeElement === document.body) {
+      let selectedItem = todos[index];
+      this._handleToggle(selectedItem.id);
+    }
+  };
+
   render() {
-    let {todos, errorMessage, currentTodo, filter} = this.state;
+    let {todos, errorMessage, currentTodo, filter, selectedIndex} = this.state;
     const submitHandler = this.state.currentTodo.trim() ? this._handleSubmit : this._handleEmptySubmit;
 
     if (filter) {
@@ -85,10 +114,11 @@ class App extends Component<Props, State> {
     return (
       <div>
         <input
-          type="text"
+          type="search"
           placeholder="Search..."
           onChange={this._handleFilterType} />
         <TodoLists
+          selectedIndex={selectedIndex}
           handleToggle={this._handleToggle}
           todos={todos}/>
         {errorMessage ?
