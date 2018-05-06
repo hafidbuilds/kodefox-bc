@@ -1,10 +1,14 @@
 // @flow
 
+type GithubUser = {
+  [string]: mixed
+}
+
 type PersonDetails = {
-  githubUser: mixed,
-  githubUserOrg: mixed,
+  githubUser: GithubUser,
+  githubUserOrg: Array<Object>,
 };
 
 export type AppState = {
-  [string]: PersonDetails,
+  PersonDetails: PersonDetails,
 };

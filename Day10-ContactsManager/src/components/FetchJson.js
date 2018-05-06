@@ -3,20 +3,25 @@
 import React, {Component, Fragment} from 'react';
 import axios from 'axios';
 
-type FetchJsonState = {
+type OrgMember = {
   [string]: mixed
 }
 
+type FetchJsonState = {
+  url: string,
+  data: Array<OrgMember>,
+  isLoading: boolean
+}
+
 type Props = {
-  [string]: mixed | () => void
+  [string]: mixed
 }
 
 class FetchJson extends Component<FetchJsonState, Props> {
   state = { 
     url: null,
     data: null,
-    isLoading: false,
-    selectedIndex: 0
+    isLoading: false
   }
 
   static getDerivedStateFromProps(nextProps: Props, prevState: FetchJsonState) {

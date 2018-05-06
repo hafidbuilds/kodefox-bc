@@ -4,7 +4,7 @@ import React, {Fragment, Component} from 'react';
 import ContactsDetails from './ContactsDetails';
 
 type ContactsListsState = {
-  [string]: mixed
+  contactLists: mixed
 }
 
 type Props = {

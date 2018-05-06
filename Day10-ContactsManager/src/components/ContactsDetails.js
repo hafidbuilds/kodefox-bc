@@ -1,6 +1,8 @@
+// @flow
+
 import React from 'react';
 
-const ContactsDetails = (props) => {
+const ContactsDetails = (props: mixed) => {
   let orgAvatar = []
   let orgName = []
   for (let org of props.githubUserOrg) {
