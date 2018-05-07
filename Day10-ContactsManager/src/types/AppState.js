@@ -1,8 +1,8 @@
 // @flow
 
 type GithubUser = {
-  [string]: mixed
-}
+  [string]: mixed,
+};
 
 type PersonDetails = {
   githubUser: GithubUser,

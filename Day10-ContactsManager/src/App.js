@@ -1,22 +1,29 @@
 // @flow
+/* eslint-disable */
 
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import FetchJson from './components/FetchJson';
 import ContactsLists from './components/ContactsLists';
 import ContactsDetails from './components/ContactsDetails';
-import type {AppState} from './types/AppState'
 // import axios from 'axios';
 
-type Props = {
-  [string]: mixed
+type GithubUser = {
+  [string]: ?mixed,
 };
 
-class App extends Component<AppState, Props> {
+type State = {
+  githubUser: ?GithubUser,
+  githubUserOrg: ?Array<Object>,
+};
+
+type Props = {
+  [string]: mixed,
+};
+
+class App extends Component<State, Props> {
   state = {
-    personDetails: {
-      githubUser: null,
-      githubUserOrg: null,
-    },
+    githubUser: null,
+    githubUserOrg: null,
   };
 
   _fetchPersonDetails = (loginUser: string) => {
@@ -46,10 +53,8 @@ class App extends Component<AppState, Props> {
     let val = fetchUser(loginUser);
     val.then((value) => {
       this.setState(() => ({
-        personDetails: {
-          githubUser: value.githubUser,
-          githubUserOrg: value.githubUserOrg,
-        },
+        githubUser: value.githubUser,
+        githubUserOrg: value.githubUserOrg,
       }));
     });
   };
@@ -59,7 +64,8 @@ class App extends Component<AppState, Props> {
   }
 
   render() {
-    const {githubUser, githubUserOrg} = this.state.personDetails;
+    const {githubUser} = this.state;
+    const {githubUserOrg} = this.state;
 
     const Layout = {
       display: 'flex',
@@ -74,17 +80,17 @@ class App extends Component<AppState, Props> {
     return (
       <div style={Layout}>
         <FetchJson
-          url={`https://api.github.com/orgs/kodefox/members?access_token=3f8db74cef7387cbaeb5edaeb2226826157b0909`}
+          url={`https://api.github.com/orgs/kodefox/members?access_token=796a22879bb87f73c7f0a9a5a86f3b2bc3ced521`}
           render={({isLoading, data}) => {
             return (
               <div style={ContactsListsStyle.Container}>
                 {isLoading
                   ? 'Loading...'
-                  : data.map((person, index) => (
+                  : data.map((orgMemberData, index) => (
                     <ContactsLists
                       index={index + 1}
                       key={index}
-                      orgMemberData={person}
+                      orgMemberData={orgMemberData}
                       fetchPersonDetails={this._fetchPersonDetails}
                       fetchedUserDetails={githubUser}
                     />

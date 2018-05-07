@@ -1,20 +1,21 @@
 // @flow
+/* eslint-disable */
 
 import React from 'react';
 
 const ContactsDetails = (props: mixed) => {
-  let orgAvatar = []
-  let orgName = []
+  let orgAvatar = [];
+  let orgName = [];
   for (let org of props.githubUserOrg) {
-    orgAvatar.push(org.avatar_url)
-    orgName.push(org.login)
+    orgAvatar.push(org.avatar_url);
+    orgName.push(org.login);
   }
 
-  const {name, company, location, bio, hireable, public_repos, followers, avatar_url: userAvatar} = props.githubUser
+  const {name, company, location, bio, hireable, public_repos, followers, avatar_url: userAvatar} = props.githubUser;
 
   const ContactsDetailsStyle = {
     main: {
-      padding: 0, 
+      padding: 0,
       margin: 'auto',
     },
     userAvatar: {
@@ -22,7 +23,7 @@ const ContactsDetails = (props: mixed) => {
       width: 300,
       borderRadius: 150,
       display: 'block',
-      margin: 'auto'
+      margin: 'auto',
     },
     orgAvatar: {
       width: 75,
@@ -30,13 +31,13 @@ const ContactsDetails = (props: mixed) => {
     },
     org: {
       display: 'flex',
-      justifyContent: 'space-around'
+      justifyContent: 'space-around',
     },
     li: {
       marginTop: 5,
-      marginBottom: 5
-    }
-  }
+      marginBottom: 5,
+    },
+  };
 
   return (
     <ul style={ContactsDetailsStyle.main}>
@@ -54,7 +55,7 @@ const ContactsDetails = (props: mixed) => {
         <li style={ContactsDetailsStyle.org}>{orgName.map((orgname, index) => <span key={index}>{orgname}  </span>)}</li>
       </div>
     </ul>
-  )
-}
-  
+  );
+};
+
 export default ContactsDetails;

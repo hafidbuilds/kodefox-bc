@@ -1,54 +1,55 @@
 // @flow
+/* eslint-disable */
 
 import React, {Fragment, Component} from 'react';
 import ContactsDetails from './ContactsDetails';
 
-type ContactsListsState = {
-  contactLists: mixed
-}
+type State = {
+  contactLists: ?mixed,
+};
 
 type Props = {
-  [string]: mixed
-}
+  [string]: mixed,
+};
 
 const Person = (props) => {
-  const {fetchPersonDetails, index} = props
-  let isSelected = props.fetchedUserDetails.login === props.login ? {color: 'red'} : {color: 'black'}
+  const {fetchPersonDetails, index} = props;
+  let isSelected = props.fetchedUserDetails.login === props.login ? {color: 'red'} : {color: 'black'};
 
   const PersonStyle = {
-    listStyleType: 'none'
-  }
+    listStyleType: 'none',
+  };
 
   return (
-    <li style={{...isSelected,...PersonStyle}}>
+    <li style={{...isSelected, ...PersonStyle}}>
       <a onClick={() => fetchPersonDetails(props.login)}>{index}. {props.login}</a>
     </li>
-  )
-}
+  );
+};
 
-class ContactsLists extends Component<ContactsListsState, Props> {
+class ContactsLists extends Component<State, Props> {
   state = {
     contactLists: null,
   }
-  
-  static getDerivedStateFromProps(nextProps: Props, prevState: ContactsListsState) {
+
+  static getDerivedStateFromProps(nextProps: Props, prevState: State) {
     if (prevState.contactLists !== nextProps.orgMemberData) {
-      return { contactLists: nextProps.data }
+      return {contactLists: nextProps.data};
     }
-    return null
+    return null;
   }
 
   render() {
-    const {login} = this.props.orgMemberData   
-    const {fetchPersonDetails, fetchedUserDetails, index} = this.props
+    const {login} = this.props.orgMemberData;
+    const {fetchPersonDetails, fetchedUserDetails, index} = this.props;
 
     const ContactsListsStyle = {
       Person: {
         margin: 10,
         cursor: 'pointer',
         fontWeight: 700,
-      }
-    }
+      },
+    };
 
     return (
       <div style={ContactsListsStyle.Person}>
