@@ -80,7 +80,7 @@ class App extends Component<State, Props> {
     return (
       <div style={Layout}>
         <FetchJson
-          url={`https://api.github.com/orgs/kodefox/members?access_token=796a22879bb87f73c7f0a9a5a86f3b2bc3ced521`}
+          url={`https://api.github.com/orgs/kodefox/members?access_token=aec7fbdc7c6540fe9ef3b20d83ee3a273933e64b`}
           render={({isLoading, data}) => {
             return (
               <div style={ContactsListsStyle.Container}>
