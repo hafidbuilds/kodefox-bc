@@ -80,7 +80,7 @@ class App extends Component<State, Props> {
     return (
       <div style={Layout}>
         <FetchJson
-          url={`https://api.github.com/orgs/kodefox/members?access_token=aec7fbdc7c6540fe9ef3b20d83ee3a273933e64b`}
+          url={`https://api.github.com/orgs/kodefox/members`}
           render={({isLoading, data}) => {
             return (
               <div style={ContactsListsStyle.Container}>
@@ -115,3 +115,5 @@ class App extends Component<State, Props> {
 const Loading = () => <h1>Loading...</h1>;
 
 export default App;
+
+//?access_token=aec7fbdc7c6540fe9ef3b20d83ee3a273933e64b

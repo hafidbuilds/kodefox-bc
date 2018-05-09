@@ -20,7 +20,7 @@ class App extends Component<Props, State> {
     currentTodo: '',
     errorMessage: '',
     filter: '',
-    selectedIndex: 0
+    selectedIndex: 0,
   }
 
   _handleSubmit = (event: SyntheticMouseEvent<HTMLButtonElement>) => {

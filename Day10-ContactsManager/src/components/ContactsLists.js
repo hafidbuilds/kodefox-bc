@@ -3,16 +3,10 @@
 
 import React, {Fragment, Component} from 'react';
 import ContactsDetails from './ContactsDetails';
+import type {Props, PersonProps} from '../types/ContactsLists.type'
 
-type State = {
-  contactLists: ?mixed,
-};
 
-type Props = {
-  [string]: mixed,
-};
-
-const Person = (props) => {
+const Person = (props: PersonProps) => {
   const {fetchPersonDetails, index} = props;
   let isSelected = props.fetchedUserDetails.login === props.login ? {color: 'red'} : {color: 'black'};
 
@@ -27,17 +21,7 @@ const Person = (props) => {
   );
 };
 
-class ContactsLists extends Component<State, Props> {
-  state = {
-    contactLists: null,
-  }
-
-  static getDerivedStateFromProps(nextProps: Props, prevState: State) {
-    if (prevState.contactLists !== nextProps.orgMemberData) {
-      return {contactLists: nextProps.data};
-    }
-    return null;
-  }
+class ContactsLists extends Component<Props> {
 
   render() {
     const {login} = this.props.orgMemberData;

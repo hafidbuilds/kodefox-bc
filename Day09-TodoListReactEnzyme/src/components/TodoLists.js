@@ -6,14 +6,14 @@ import type {TodoItems} from '../types/State';
 type Props = {
   todos: Array<TodoItems>,
   handleToggle: (id: number) => void,
-  selectedIndex: number
+  selectedIndex: number,
 };
 
 export const TodoLists = (props: Props) => {
   let {todos, selectedIndex} = props;
-  let notDone = todos.filter(todo => !todo.isComplete)
-  let done = todos.filter(todo => todo.isComplete)
-  let newTodos = [...notDone,...done]
+  let notDone = todos.filter((todo) => !todo.isComplete);
+  let done = todos.filter((todo) => todo.isComplete);
+  let newTodos = [...notDone, ...done];
   return (
     <ul>
       {

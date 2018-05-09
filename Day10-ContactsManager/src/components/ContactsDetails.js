@@ -3,7 +3,19 @@
 
 import React from 'react';
 
-const ContactsDetails = (props: mixed) => {
+type Props = {
+  githubUser: GithubUser,
+  githubUserOrg: Array<GithubUserOrg>
+}
+
+type GithubUser = {
+  [string]: mixed
+}
+
+type GithubUserOrg = {
+  [string]: mixed
+}
+const ContactsDetails = (props: Props) => {
   let orgAvatar = [];
   let orgName = [];
   for (let org of props.githubUserOrg) {
@@ -33,7 +45,7 @@ const ContactsDetails = (props: mixed) => {
       display: 'flex',
       justifyContent: 'space-around',
     },
-    li: {
+    list: {
       marginTop: 5,
       marginBottom: 5,
     },
@@ -43,14 +55,14 @@ const ContactsDetails = (props: mixed) => {
     <ul style={ContactsDetailsStyle.main}>
       <img style={ContactsDetailsStyle.userAvatar} src={userAvatar} alt=""/>
       <div style={{marginTop: 20}}>
-        <li style={ContactsDetailsStyle.li}><b>Name :</b> {name}</li>
-        <li style={ContactsDetailsStyle.li}><b>Repositries :</b> {public_repos}</li>
-        <li style={ContactsDetailsStyle.li}><b>Bio :</b> {bio}</li>
-        <li style={ContactsDetailsStyle.li}><b>Location :</b> {location}</li>
-        <li style={ContactsDetailsStyle.li}><b>Company :</b> {company}</li>
-        <li style={ContactsDetailsStyle.li}><b>Followers :</b> {followers}</li>
-        <li style={ContactsDetailsStyle.li}><b>Hireable :</b> {hireable ? 'Yes' : 'No'}</li>
-        <li style={ContactsDetailsStyle.li}><b>Organizations :</b> </li>
+        <li style={ContactsDetailsStyle.list}><b>Name :</b> {name}</li>
+        <li style={ContactsDetailsStyle.list}><b>Repositries :</b> {public_repos}</li>
+        <li style={ContactsDetailsStyle.list}><b>Bio :</b> {bio}</li>
+        <li style={ContactsDetailsStyle.list}><b>Location :</b> {location}</li>
+        <li style={ContactsDetailsStyle.list}><b>Company :</b> {company}</li>
+        <li style={ContactsDetailsStyle.list}><b>Followers :</b> {followers}</li>
+        <li style={ContactsDetailsStyle.list}><b>Hireable :</b> {hireable ? 'Yes' : 'No'}</li>
+        <li style={ContactsDetailsStyle.list}><b>Organizations :</b> </li>
         <li style={ContactsDetailsStyle.org}>{orgAvatar.map((avatar, index) => <span key={index}><img style={ContactsDetailsStyle.orgAvatar} src={avatar} alt=""/></span>)}</li>
         <li style={ContactsDetailsStyle.org}>{orgName.map((orgname, index) => <span key={index}>{orgname}  </span>)}</li>
       </div>

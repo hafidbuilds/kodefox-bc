@@ -8,14 +8,17 @@ type OrgMember = {
   [string]: mixed,
 };
 
+type RenderProps = (state: State) => void
+
 type State = {
-  url: string,
+  url: ?string,
   data: ?Array<OrgMember>,
   isLoading: boolean,
 };
 
 type Props = {
-  [string]: mixed,
+  url: string,
+  render: RenderProps,
 };
 
 class FetchJson extends Component<State, Props> {
@@ -42,7 +45,7 @@ class FetchJson extends Component<State, Props> {
     promise
       .then((response) => {
         this.setState(
-          () => ({data: response.data, isLoading: false})
+          ({data, isLoading}) => ({data: response.data, isLoading: false})
         );
       })
       .catch((error) => console.log(error));

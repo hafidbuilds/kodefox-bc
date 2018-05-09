@@ -85,7 +85,7 @@ class App extends Component<State, Props> {
             return (
               <div style={ContactsListsStyle.Container}>
                 {isLoading
-                  ? 'Loading...'
+                  ? <Loading />
                   : data.map((orgMemberData, index) => (
                     <ContactsLists
                       index={index + 1}
