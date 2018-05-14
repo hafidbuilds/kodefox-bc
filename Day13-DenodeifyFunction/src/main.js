@@ -1,21 +1,35 @@
 //@flow
 
 // import * as fs from 'fs';
-import denodeify from 'denodeify'
+// import denodeify from 'denodeify'
 
-type PromiseFunc = (input: mixed) => Promise<mixed>;
-type CallbackFunc = (input: mixed, callback: (err: ?Error, res: mixed) => void) => void
+// type PromiseFunc = (input: mixed) => Promise<mixed>;
+// type CallbackFunc = (input: mixed, callback: (err: ?Error, res: mixed) => void) => void
 
-type Denodeify = (callbackFunc: CallbackFunc) => PromiseFunc;
+// type Denodeify = (callbackFunc: CallbackFunc) => PromiseFunc;
 
-const denodeify: Denodeify = global.denodeify
+// const denodeify: Denodeify = global.denodeify
 
-function getFilmByID(id: string, cb: (err: ?Error, res: Array<string>) => void) {
-  setTimeout(() => {
-    cb(null, ['Pirates', 'Kungfu Panda', 'Avengers'])
-  }, 2000);
+// function getFilmByID(id: string, cb: (err: ?Error, res: Array<string>) => void) {
+//   setTimeout(() => {
+//     cb(null, ['Pirates', 'Kungfu Panda', 'Avengers'])
+//   }, 2000);
+// }
+
+// const film = denodeify(getFilmByID)
+// const result = getFilmByID('90')
+// result.then(item => console.log(item))
+
+const denodeify = (callbackFunc) => {
+  return (input: mixed) => {
+    return new Promise((resolve, reject) => {
+      callbackFunc(input, (err, res) => {
+        if (err) {
+          reject(error)
+        } else {
+          resolve(result)
+        }
+      })
+    })
+  }
 }
-
-const film = denodeify(getFilmByID)
-const result = getFilmByID('90')
-result.then(item => console.log(item))
