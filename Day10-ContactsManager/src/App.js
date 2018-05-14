@@ -8,17 +8,15 @@ import ContactsDetails from './components/ContactsDetails';
 // import axios from 'axios';
 
 type GithubUser = {
-  [string]: ?mixed,
+  [string]: mixed,
 };
 
 type State = {
   githubUser: ?GithubUser,
-  githubUserOrg: ?Array<Object>,
+  githubUserOrg: ?Array<GithubUser>,
 };
 
-type Props = {
-  [string]: mixed,
-};
+type Props = {};
 
 class App extends Component<State, Props> {
   state = {
@@ -52,7 +50,7 @@ class App extends Component<State, Props> {
 
     let val = fetchUser(loginUser);
     val.then((value) => {
-      this.setState(() => ({
+      this.setState(({githubUser, githubUserOrg}) => ({
         githubUser: value.githubUser,
         githubUserOrg: value.githubUserOrg,
       }));
