@@ -1,55 +1,42 @@
-import React, {Component} from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, { Component } from "react";
+import { StyleSheet, View, Platform } from "react-native";
 
-const Header = (props) => {
-  return(
-    <View style={styles.header}>
-      {props.children}
-    </View>
-  )
-}
+const data = [
+  { name: "Hafidz Permana", nickname: "hafidzpermana", profilePic: "  " },
+  { name: "Hafidz Permana", nickname: "hafidzpermana", profilePic: "  " },
+  { name: "Hafidz Permana", nickname: "hafidzpermana", profilePic: "  " },
+  { name: "Hafidz Permana", nickname: "hafidzpermana", profilePic: "  " },
+  { name: "Hafidz Permana", nickname: "hafidzpermana", profilePic: "  " },
+  { name: "Hafidz Permana", nickname: "hafidzpermana", profilePic: "  " }
+];
 
-const Content = (props) => {
-  return(
-    <View style={styles.content}>
-      {props.children}
-    </View>
-  )
-}
+const Header = props => <View style={styles.header}>{props.children}</View>;
 
-const Footer = (props) => {
-  return(
-    <View style={styles.footer}>
-      {props.children}
-    </View>
-  )
-}
+const Content = props => <View style={styles.content}>{props.children}</View>;
 
-const FriendList = (props) => {
-  return(
-    <View>
-      {props.children}
-    </View>
-  )
-}
+const Footer = props => <View style={styles.footer}>{props.children}</View>;
+
+const FriendList = props => (
+  <View style={styles.friendlist}>{props.children}</View>
+);
 
 export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Header >
-          <View />
-          <View />
-          <View />
+        <Header>
+          <View style={{ backgroundColor: "#e2e8b2", width: 50, height: 50 }} />
+          <View style={{ backgroundColor: "#e2e8b2", width: 50, height: 50 }} />
+          <View style={{ backgroundColor: "#e2e8b2", width: 50, height: 50 }} />
         </Header>
-        <Content >
+        <Content>
           <FriendList />
         </Content>
-        <Footer >
-          <View />
-          <View />
-          <View />
-          <View />                              
+        <Footer>
+          <View style={{ flex: 1, backgroundColor: "#e2e8b2", width: 50, height: '100%', borderColor: 'black', borderWidth: 1 }} />
+          <View style={{ flex: 1, backgroundColor: "#e2e8b2", width: 50, height: '100%', borderColor: 'black', borderWidth: 1 }} />
+          <View style={{ flex: 1, backgroundColor: "#e2e8b2", width: 50, height: '100%', borderColor: 'black', borderWidth: 1 }} />
+          <View style={{ flex: 1, backgroundColor: "#e2e8b2", width: 50, height: '100%', borderColor: 'black', borderWidth: 1 }} />
         </Footer>
       </View>
     );
@@ -59,19 +46,31 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
-    backgroundColor: '#fffdf4',
+    flexDirection: "column",
+    backgroundColor: "#fffdf4",
+    ...Platform.select({
+      ios: {paddingTop: 30},
+      android: {paddingTop: 20}
+    })
   },
   header: {
-    flex: 1,     
-    backgroundColor: '#e0ffdd',
+    width: '100%',
+    height: 70,
+    flexDirection: "row",
+    paddingHorizontal: 10,
+    paddingVertical: (70 - 50) / 2,
+    justifyContent: "space-between",
+    backgroundColor: "#e0ffdd"
   },
   content: {
-    flex: 3, 
-    backgroundColor: '#fdffe5',
+    flex: 7,
+    backgroundColor: "#fdffe5"
   },
+  friendlist: {},
   footer: {
-    flex: 1,
-    backgroundColor: '#fff4d0',
-  },
+    width: '100%',
+    height: 70,
+    backgroundColor: "#e0ffdd",
+    flexDirection: "row",
+  }
 });
