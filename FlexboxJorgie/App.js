@@ -8,6 +8,36 @@ import {
   ScrollView
 } from "react-native";
 
+export default class App extends React.Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Header>
+          <View style={{ backgroundColor: "#e2e8b2", width: 50, height: 50 }} />
+          <View style={{ backgroundColor: "#e2e8b2", width: 50, height: 50 }} />
+          <View style={{ backgroundColor: "#e2e8b2", width: 50, height: 50 }} />
+        </Header>
+        <Content>
+          <PersonProfile />
+          <PersonContacts>
+            <ScrollView>
+              {data.map((person, i) => (
+                <PersonDetails key={i} details={person} />
+              ))}
+            </ScrollView>
+          </PersonContacts>
+        </Content>
+        <Footer>
+          <TabFooter />
+          <TabFooter />
+          <TabFooter />
+          <TabFooter />
+        </Footer>
+      </View>
+    );
+  }
+}
+
 const data = [
   { name: "Hafidz Permana", nickname: "hafidzpermana", profilePic: "  " },
   { name: "Hafidz Permana", nickname: "hafidzpermana", profilePic: "  " },
@@ -44,6 +74,8 @@ const PersonProfile = props => {
 
 const Footer = props => <View style={styles.footer}>{props.children}</View>;
 
+const TabFooter = props => <View style={styles.tabfooter} />;
+
 const PersonDetails = props => {
   const { name, nickname } = props.details;
   return (
@@ -76,72 +108,6 @@ const PersonDetails = props => {
 const PersonContacts = props => (
   <View style={styles.personcontacts}>{props.children}</View>
 );
-
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Header>
-          <View style={{ backgroundColor: "#e2e8b2", width: 50, height: 50 }} />
-          <View style={{ backgroundColor: "#e2e8b2", width: 50, height: 50 }} />
-          <View style={{ backgroundColor: "#e2e8b2", width: 50, height: 50 }} />
-        </Header>
-        <Content>
-          <PersonProfile />
-          <PersonContacts>
-            <ScrollView>
-              {data.map((person, i) => (
-                <PersonDetails key={i} details={person} />
-              ))}
-            </ScrollView>
-          </PersonContacts>
-        </Content>
-        <Footer>
-          <View
-            style={{
-              flex: 1,
-              backgroundColor: "#e2e8b2",
-              width: 50,
-              height: "100%",
-              borderColor: "black",
-              borderWidth: 1
-            }}
-          />
-          <View
-            style={{
-              flex: 1,
-              backgroundColor: "#e2e8b2",
-              width: 50,
-              height: "100%",
-              borderColor: "black",
-              borderWidth: 1
-            }}
-          />
-          <View
-            style={{
-              flex: 1,
-              backgroundColor: "#e2e8b2",
-              width: 50,
-              height: "100%",
-              borderColor: "black",
-              borderWidth: 1
-            }}
-          />
-          <View
-            style={{
-              flex: 1,
-              backgroundColor: "#e2e8b2",
-              width: 50,
-              height: "100%",
-              borderColor: "black",
-              borderWidth: 1
-            }}
-          />
-        </Footer>
-      </View>
-    );
-  }
-}
 
 const styles = StyleSheet.create({
   container: {
@@ -192,5 +158,13 @@ const styles = StyleSheet.create({
     height: 70,
     backgroundColor: "#e0ffdd",
     flexDirection: "row"
+  },
+  tabfooter: {
+    flex: 1,
+    backgroundColor: "#e2e8b2",
+    width: 50,
+    height: "100%",
+    borderColor: "black",
+    borderWidth: 1
   }
 });
