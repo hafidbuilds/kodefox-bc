@@ -5,7 +5,8 @@
   "dependencies": {
     "expo": "^27.0.1",
     "react": "16.3.1",
-    "react-native": "~0.55.2"
+    "react-native": "~0.55.2",
+    "react-native-elements": "^0.19.1"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",
@@ -26,13 +27,12 @@
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
-    "test": "jest",
+    "test": "yarn lint && yarn typecheck && yarn test-src",
     "format": "prettier-eslint --write \"src/**/*.js\"",
     "lint": "eslint . --max-warnings 0",
     "typecheck": "flow",
     "test-src": "jest --coverage",
-    "test-watch": "yarn test-src --watch",
-    "test": "yarn lint && yarn typecheck && yarn test-src"
+    "test-watch": "yarn test-src --watch"
   },
   "jest": {
     "preset": "jest-expo"
