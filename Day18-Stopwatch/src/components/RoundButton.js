@@ -1,17 +1,18 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
-const RoundButton = ({title, color, background}) => {
+export const RoundButton = ({title, color, background, onPress, disabled}) => {
   return (
-    <View style={[styles.button, {backgroundColor: background}]}>
+    <TouchableOpacity
+      style={[styles.button, {backgroundColor: background}]}
+      onPress={() => !disabled && onPress()}
+    >
       <View style={styles.buttonBorder}>
         <Text style={[styles.buttonText, {color}]}>{title}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
-
-export default RoundButton;
 
 const styles = StyleSheet.create({
   button: {

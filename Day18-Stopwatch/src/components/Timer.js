@@ -2,17 +2,19 @@ import React from 'react';
 import {Text, StyleSheet} from 'react-native';
 import moment from 'moment';
 
-const Timer = ({interval}) => {
-  const duration = moment.duration(interval);
+export const Timer = ({timeElapsed, style}) => {
+  const padding = (n) => (n < 10 ? '0' + n : n);
+  const duration = moment.duration(timeElapsed);
   const centiseconds = Math.floor(duration.milliseconds() / 10);
+
   return (
-    <Text style={styles.timer}>
-      {duration.minutes()}:{duration.seconds()},{centiseconds}
+    <Text style={[styles.timer, style]}>
+      {padding(duration.minutes())}:
+      {padding(duration.seconds())},
+      {padding(centiseconds)}
     </Text>
   );
 };
-
-export default Timer;
 
 const styles = StyleSheet.create({
   timer: {

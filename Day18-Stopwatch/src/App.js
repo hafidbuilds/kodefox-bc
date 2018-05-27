@@ -1,22 +1,84 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {ButtonRow, LapsTable, RoundButton, Timer} from './components';
+import moment from 'moment';
+import {Timer, RoundButton, LapsTable, ButtonRow} from './components';
 
-const DATA = {
-  timer: 1234567,
-  laps: [12345, 49876, 65432],
-};
+export default class App extends Component {
+  state = {
+    start: 0,
+    now: 0,
+    laps: [],
+    lapsInterval: [],
+  };
 
-export default class App extends React.Component {
+  _tick = () => {
+    setInterval(() => {
+      const updating = Date.now();
+      this.setState({now: updating});
+    }, 99);
+  };
+
+  componentWillUnmount() {
+    clearInterval(this._tick);
+  }
+
+  _handleStart = () => {
+    const currentTimeClicked = Date.now();
+    this.setState(
+      ({start, now, laps}) => ({
+        start: currentTimeClicked,
+        now: currentTimeClicked,
+        laps: [0],
+        lapsInterval: [currentTimeClicked],
+      }),
+      this._tick(),
+    );
+  };
+
+  _handleLap = () => {
+    const {now, start, laps, lapsInterval} = this.state;
+    let [firstLap, ...otherlaps] = laps;
+    const newLap = now - start;
+    const newLapInterval = newLap - laps[laps.length - 1];
+    this.setState({
+      laps: [0, ...otherlaps, newLap],
+      lapsInterval: [...lapsInterval, newLapInterval],
+    });
+  };
+
   render() {
+    const {start, now, laps, lapsInterval} = this.state;
+    const timeElapsed = now - start;
+
     return (
       <View style={styles.container}>
-        <Timer interval={DATA.timer} />
-        <ButtonRow>
-          <RoundButton title="Reset" color="#FFFFFF" background="#3D3D3D" />
-          <RoundButton title="Start" color="#8B8B90" background="#1B361F" />
-        </ButtonRow>
-        <LapsTable laps={DATA.laps} />
+        <Timer timeElapsed={timeElapsed} />
+        {laps.length === 0 ? (
+          <ButtonRow>
+            <RoundButton title="Reset" color="#8B8B90" background="#151515" />
+            <RoundButton
+              title="Start"
+              color="#50D167"
+              background="#1B361F"
+              onPress={this._handleStart}
+            />
+          </ButtonRow>
+        ) : (
+          <ButtonRow>
+            <RoundButton
+              title="Lap"
+              color="#8B8B90"
+              background="#151515"
+              onPress={this._handleLap}
+            />
+            <RoundButton title="Stop" color="#E33935" background="#3C1715" />
+          </ButtonRow>
+        )}
+        <LapsTable
+          laps={laps}
+          timeElapsed={timeElapsed}
+          lapsInterval={lapsInterval}
+        />
       </View>
     );
   }
