@@ -11,12 +11,12 @@ export default class App extends Component {
     lapsInterval: [],
   };
 
-  _tick = () => {
-    setInterval(() => {
-      const updating = Date.now();
-      this.setState({now: updating});
-    }, 99);
-  };
+  // _tick = () => {
+  //   setInterval(() => {
+  //     const updating = Date.now();
+  //     this.setState({now: updating});
+  //   }, 99);
+  // };
 
   componentWillUnmount() {
     clearInterval(this._tick);
@@ -24,15 +24,16 @@ export default class App extends Component {
 
   _handleStart = () => {
     const currentTimeClicked = Date.now();
-    this.setState(
-      ({start, now, laps}) => ({
-        start: currentTimeClicked,
-        now: currentTimeClicked,
-        laps: [0],
-        lapsInterval: [currentTimeClicked],
-      }),
-      this._tick(),
-    );
+    this.setState(({start, now, laps}) => ({
+      start: currentTimeClicked,
+      now: currentTimeClicked,
+      laps: [0],
+      lapsInterval: [0],
+    }));
+    this._tick = setInterval(() => {
+      const updating = Date.now();
+      this.setState({now: updating});
+    }, 99);
   };
 
   _handleLap = () => {
@@ -46,6 +47,23 @@ export default class App extends Component {
     });
   };
 
+  _handleStop = () => {
+    clearTimeout(this._tick);
+    this.setState(({start, now}) => ({
+      start: 0,
+      now: 0,
+    }));
+  };
+
+  _handleReset = () => {
+    this.setState(({start, stop, laps, lapsInterval}) => ({
+      start: 0,
+      stop: 0,
+      laps: [],
+      lapsInterval: [],
+    }));
+  };
+
   render() {
     const {start, now, laps, lapsInterval} = this.state;
     const timeElapsed = now - start;
@@ -53,9 +71,14 @@ export default class App extends Component {
     return (
       <View style={styles.container}>
         <Timer timeElapsed={timeElapsed} />
-        {laps.length === 0 ? (
+        {start === 0 ? (
           <ButtonRow>
-            <RoundButton title="Reset" color="#8B8B90" background="#151515" />
+            <RoundButton
+              title="Reset"
+              color="#8B8B90"
+              background="#151515"
+              onPress={this._handleReset}
+            />
             <RoundButton
               title="Start"
               color="#50D167"
@@ -71,7 +94,12 @@ export default class App extends Component {
               background="#151515"
               onPress={this._handleLap}
             />
-            <RoundButton title="Stop" color="#E33935" background="#3C1715" />
+            <RoundButton
+              title="Stop"
+              color="#E33935"
+              background="#3C1715"
+              onPress={this._handleStop}
+            />
           </ButtonRow>
         )}
         <LapsTable

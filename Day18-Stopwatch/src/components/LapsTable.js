@@ -9,7 +9,7 @@ export const LapsTable = ({laps, timeElapsed, lapsInterval}) => {
         const interval = lap - laps[laps.length - 1];
         return (
           <Lap
-            lapNumber={index === 0 ? '' : index + 1}
+            lapNumber={index === 0 ? '' : index}
             key={index + 1}
             timeElapsed={index === 0 ? timeElapsed : lap}
             lapsInterval={index === 0 ? lapsInterval : interval}

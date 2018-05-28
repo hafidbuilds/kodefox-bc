@@ -23,7 +23,7 @@ const LapsInterval = ({lapsInterval, style}) => {
 
   return (
     <Text style={[styles.timer, style]}>
-      {padding(duration.minutes())}:
+      + {padding(duration.minutes())}:
       {padding(duration.seconds())},
       {padding(centiseconds)}
     </Text>
